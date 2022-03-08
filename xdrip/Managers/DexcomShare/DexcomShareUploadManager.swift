@@ -231,11 +231,11 @@ class DexcomShareUploadManager:NSObject {
             
             trace("in startRemoteMonitoringSessionAndStartUpload, finished task", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .info)
             
-            // log the data when existing the scope
+            // log the data when exiting the scope in debug mode
             defer {
                 if let data = data {
                     if let dataAsString = String(bytes: data, encoding: .utf8) {
-                        trace("    data = %{public}@", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .error, dataAsString)
+                        trace("    data = %{public}@", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .debug, dataAsString)
                     }
                 }
             }
@@ -348,10 +348,13 @@ class DexcomShareUploadManager:NSObject {
             return
         }
         
-        // get timestamp of first reading to upload, limit to 8 hours
-        var timeStamp = Date(timeIntervalSinceNow: -8*60*60)
+        // get readings to upload, limit to x days, x = ConstantsDexcomShare.maxDaysToUpload
+        var timeStamp = Date(timeIntervalSinceNow: TimeInterval(-Double(ConstantsDexcomShare.maxDaysToUpload) * 24.0 * 60.0 * 60.0))
+        
         if let timeStampLatestDexcomShareUploadedBgReading = UserDefaults.standard.timeStampLatestDexcomShareUploadedBgReading {
-            timeStamp = timeStampLatestDexcomShareUploadedBgReading
+            if timeStampLatestDexcomShareUploadedBgReading > timeStamp {
+                timeStamp = timeStampLatestDexcomShareUploadedBgReading
+            }
         }
         
         // get readings to upload, applying minimumTimeBetweenTwoReadingsInMinutes filter
@@ -392,6 +395,15 @@ class DexcomShareUploadManager:NSObject {
                 
                 trace("in uploadBgReadingsToDexcomShare, finished task", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .info)
                 
+                // log the data when exiting the scope in debug mode
+                defer {
+                    if let data = data {
+                        if let dataAsString = String(bytes: data, encoding: .utf8) {
+                            trace("    data = %{public}@", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .debug, dataAsString)
+                        }
+                    }
+                }
+
                 // error cases
                 if let error = error {
                     trace("    failed to upload, error = %{public}@", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .error, error.localizedDescription)
@@ -575,6 +587,15 @@ class DexcomShareUploadManager:NSObject {
                 
                 trace("in loginAndStoreSessionId, finished task", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .info)
                 
+                // log the data when exiting the scope in debug mode
+                defer {
+                    if let data = data {
+                        if let dataAsString = String(bytes: data, encoding: .utf8) {
+                            trace("    data = %{public}@", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .debug, dataAsString)
+                        }
+                    }
+                }
+
                 // error cases
                 if let error = error {
                     trace("    failed to login, error = %{public}@", log: self.log, category: ConstantsLog.categoryDexcomShareUploadManager, type: .error, error.localizedDescription)
