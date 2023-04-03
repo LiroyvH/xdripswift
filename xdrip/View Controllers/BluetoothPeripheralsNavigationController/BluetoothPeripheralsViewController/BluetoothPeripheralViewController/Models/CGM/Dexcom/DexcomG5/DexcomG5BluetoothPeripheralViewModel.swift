@@ -473,7 +473,7 @@ extension DexcomG5BluetoothPeripheralViewModel: BluetoothPeripheralViewModel {
         
         if isFireFly() {
             
-            return DexcomSection.allCases.count - 1
+            return DexcomSection.allCases.count
             
         } else {
             
