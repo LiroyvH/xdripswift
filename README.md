@@ -3,4 +3,4 @@
 <br />1.) Note that even with the ONE: the connection to a (Dexcom) Receiver, if you're using one, may be severed or start causing issues. 
 <br />2.) It is advisable to test this on another iPhone, because connecting one iPhone to two different slots on the transmitter may result in adverse effects <b>INCLUDING PERMANENTLY LOSING THE TRANSMITTER</b> (bricking it).
 <br />3.) Again: do <b>NOT</b> run this with G6, <i>especially not</i> when you hooked it up to a pump (eg: T:Slim X2, Omnipod, Ypso).
-<br />This branch is solely for testing purposes with ONE-transmitters only and may be dangerous to run in any and all circumstances.
+<br /><br />This branch is solely for testing purposes with ONE-transmitters only and may be dangerous to run in any and all circumstances.
