@@ -1,33 +1,6 @@
-Project in development.
-
-Documentation available on https://xdrip4ios.readthedocs.io/en/latest/
-
-for info, send an email to xdrip@proximus.be
-
-Current Status :
-
-- Supported transmitters :
-    - Dexcom G4 with xBridge       
-    - Dexcom G5 and G6
-    - MiaoMiao 1 and 2
-    - Blucon
-    - Bubble
-    - Droplet 1
-    - Atom
-    - Libre 2
-- 6 hour graph with readings
-- Alerting
-- Upload to Nightscout
-- Follower mode, with NightScout
-- Store readings in HealthKit
-- Speak readings
-- upload to Dexcom share servers
-- Bluetooth Connection to M5Stack, the M5Stack software to be used can be found here : https://github.com/JohanDegraeve/M5_NightscoutMon
-- Bluetooth Connection to M5StickC, the M5Stickc software to be used can be found here : https://github.com/JohanDegraeve/M5_StickC_xdrip_iOS
-- Connection to Watlaa :
-    
-    
-
-- create events in Calendar when new glucose reading is received. This to support AppleWatch. More info : https://github.com/JohanDegraeve/xdripswift/wiki/Calendar-Events---Apple-Watch
-
-For developers : please go to the Wiki : https://github.com/JohanDegraeve/xdripswift/wiki
+<b>!!!WARNING!!!</b>
+<br />This specific branch, "DexONEdirect", is highly experimental and will use slot 0x1 (reader) instead of 0x2 (smart). Solely introduced to test ONE-auth protocol on alt slot. Do <b>!!NOT!!</b> run this in any other circumstance with anything other than a ONE-transmitter and <i>especially not when using G6 + Pump as it will <u>disconnect</u> you from your pump.</i> You should NOT install this unless you've been asked to and/or when you don't understand what it does + what its caveats are. The most important caveats are:
+<br />1.) Note that even with the ONE: the connection to a (Dexcom) Receiver, if you're using one, may be severed or start causing issues. 
+<br />2.) It is advisable to test this on another iPhone, because connecting one iPhone to two different slots on the transmitter may result in adverse effects <b>INCLUDING PERMANENTLY LOSING THE TRANSMITTER</b> (bricking it).
+<br />3.) Again, do NOT run this with G6 and <i>especially not</i> if the G6 is hooked up to a pump. 
+<br />This branch is solely for testing purposes with ONE-transmitters only and may be dangerous to run in any and all circumstances.
