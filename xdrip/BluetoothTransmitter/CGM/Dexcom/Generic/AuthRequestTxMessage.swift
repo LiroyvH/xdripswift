@@ -11,7 +11,7 @@ import Foundation
 
 struct AuthRequestTxMessage: TransmitterTxMessage {
     let singleUseToken: Data
-    let endByte: UInt8 = 0x2
+    let endByte: UInt8 = 0x1
 
     init() {
         let uuid = UUID().uuid
