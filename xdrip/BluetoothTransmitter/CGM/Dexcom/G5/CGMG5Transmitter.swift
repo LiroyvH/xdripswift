@@ -1346,7 +1346,9 @@ class CGMG5Transmitter:BluetoothTransmitter, CGMTransmitter {
             trace("in processGlucoseDataRxMessage, received glucoseDataRxMessage, value = %{public}@, algorithm status = %{public}@, transmitter status = %{public}@", log: log, category: ConstantsLog.categoryCGMG5, type: .info, glucoseDataRxMessage.calculatedValue.description, glucoseDataRxMessage.algorithmStatus.description, glucoseDataRxMessage.transmitterStatus.description)
             
             processGlucoseG6DataRxMessageOrGlucoseDataRxMessage(calculatedValue: glucoseDataRxMessage.calculatedValue, algorithmStatus: glucoseDataRxMessage.algorithmStatus, timeStamp: Date())
-            _ = writeDataToPeripheral(data: Data(for: .disconnectTx), characteristicToWriteTo: writeControlCharacteristic, type: .withResponse)
+            if let writeControlCharacteristic = writeControlCharacteristic {
+                _ = writeDataToPeripheral(data: Data(for: .disconnectTx), characteristicToWriteTo: writeControlCharacteristic, type: .withResponse)
+            }
             
         } else {
             
@@ -1365,7 +1367,9 @@ class CGMG5Transmitter:BluetoothTransmitter, CGMTransmitter {
                 glucoseDataRxMessage.transmitterStatus.description)
             
             processGlucoseG6DataRxMessageOrGlucoseDataRxMessage(calculatedValue: glucoseDataRxMessage.calculatedValue, algorithmStatus: glucoseDataRxMessage.algorithmStatus, timeStamp: glucoseDataRxMessage.timeStamp)
-            _ = writeDataToPeripheral(data: Data(for: .disconnectTx), characteristicToWriteTo: writeControlCharacteristic, type: .withResponse)
+            if let writeControlCharacteristic = writeControlCharacteristic {
+                _ = writeDataToPeripheral(data: Data(for: .disconnectTx), characteristicToWriteTo: writeControlCharacteristic, type: .withResponse)
+            }
             
         } else {
             
